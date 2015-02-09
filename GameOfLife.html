@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html class = "wrapper">
+	<head>
+		<link rel = "stylesheet" type = "text/css" href="style.css">
+	</head>
+	
+	<body class = "wrapper">	
+		<canvas id = "screen" onmousedown = "mouseDown()" onmouseup = "mouseUp()" onmousemove = "mouseMove(event)"></canvas>
+		
+		<div id = "menu">
+			<div class = "sub-menu">
+				<h2 class = "sub-header"> Controls </h2>
+				<button id = "thePlayButton" class = "button" onclick = "play()">Play</button>
+				<button class = "button" onclick = "clearGrid()">Clear</button>
+			</div>
+			
+			<div class = "sub-menu">
+				<h2 class = "sub-header"> Settings </h2>
+				<button class = "button">Stuff</button>
+				<button class = "button">Stuff2</button>
+			</div>
+			
+			<div class = "sub-menu">
+				<h2 class = "sub-header"> Grid Size </h2>
+				<button class = "button">Small</button>
+				<button class = "button">Normal</button>
+				<button class = "button">Large</button>
+				<button class = "button">Huge</button>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src = "input.js"> </script>
+		<script type="text/javascript" src = "cell.js"> </script>
+		<script type="text/javascript" src = "game.js"> </script>
+	</body>
+</html>
