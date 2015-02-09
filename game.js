@@ -7,9 +7,8 @@ function update()
 		if(currentTime - prevTime > 100)
 		{
 			prevTime = currentTime;
-			for(var x = 0; x < width; x++)
-				for(var y = 0; y < height; y++)
-					cells[x][y].checkAlive();
+			for(var i = 0; i < cells.length; i++)
+				cells[i].checkAlive();
 		}
 	}
 }
@@ -19,9 +18,8 @@ function draw()
 	ctx.fillStyle = rgb(0, 0, 0);
 	ctx.fillRect(0,0, Screen.width, Screen.height);
 	
-	for(var x = 0; x < width; x++)
-		for(var y = 0; y < height; y++)
-			cells[x][y].update(x, y);
+	for(var i = 0; i < cells.length; i++)
+		cells[i].update();
 }
 
 function run()
@@ -33,39 +31,37 @@ function run()
 }
 
 
-var Screen = document.getElementById("screen");
-Screen.width = window.innerWidth;
-Screen.height = window.innerHeight * .8;
-
-var ctx = Screen.getContext("2d");			
+var Screen;
+var ctx;		
 var cells = []; 
-var width = 64;
-var height = 32; 
+var width = 1024;
+var height = 512; 
 
-for(var x = 0; x < width; x++)
+function start()
 {
-	cells.push([]);
-	for(var y = 0; y < height; y++)
-	{
-		cells[x].push(new Cell());
-	}
-}
+	Screen = document.getElementById("screen");
+	Screen.width = window.innerWidth;
+	Screen.height = window.innerHeight * .8;
+	ctx = Screen.getContext("2d");
 	
-for(var x = 0; x < width; x++)
-{
-	for(var y = 0; y < height; y++)
-	{
-		for(var i = 0; i < 8; i++)
-		{
-			cells[x][y].neighbors[i][0] += x;
-			cells[x][y].neighbors[i][1] += y;
+	for(var x = 0; x < width; x++)
+		for(var y = 0; y < height; y++)
+			cells.push(new Cell(x, y));
 			
-			if(cells[x][y].neighbors[i][0] < 0) 		cells[x][y].neighbors[i][0] = width - 1;
-			if(cells[x][y].neighbors[i][1] < 0) 		cells[x][y].neighbors[i][1] = height - 1;
-			if(cells[x][y].neighbors[i][0] >= width) 	cells[x][y].neighbors[i][0] = 0;
-			if(cells[x][y].neighbors[i][1] >= height)	cells[x][y].neighbors[i][1] = 0;
-		}
+	for(var i = 0; i < cells.length; i++)
+				cells[i].initNeighbors();
+				
+	for(var x = 1; x < width - 1; x++)
+	{
+		cells[getCellId(x, 256)].alive = true;
+		cells[getCellId(x, 256)].aliveNext = true;
 	}
-}
+	
+	for(var y = 1; y < height - 1; y++)
+	{
+		cells[getCellId(512, y)].alive = true;
+		cells[getCellId(512, y)].aliveNext = true;
+	}
 
-run();
+	run();
+}

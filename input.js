@@ -20,8 +20,8 @@ function handleMouseInput()
 {
 	if(mouseIsDown)
 	{
-		cells[mouse.x][mouse.y].alive = true;
-		cells[mouse.x][mouse.y].aliveNext = true;
+		cells[getCellId(mouse.x, mouse.y)].alive = true;
+		cells[getCellId(mouse.x, mouse.y)].aliveNext = true;
 	}
 }
 
@@ -46,8 +46,8 @@ function clearGrid()
 	for(var x = 0; x < width; x++)
 		for(var y = 0; y < height; y++)
 		{
-			cells[x][y].alive = false;
-			cells[x][y].aliveNext = false;
+			cells[getCellId(x, y)].alive = false;
+			cells[getCellId(x, y)].aliveNext = false;
 		}
 		
 	ctx.fillStyle = rgb(0, 0, 0);
