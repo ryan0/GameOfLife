@@ -10,22 +10,25 @@
 		<div id = "menu">
 			<div class = "sub-menu">
 				<h2 class = "sub-header"> Controls </h2>
-				<button id = "thePlayButton" class = "button" onclick = "Input.play()">Play</button>
+				<button id = "playButton" class = "button" onclick = "Input.play()">Play</button>
+				<button class = "button" onclick = "Input.step()">Step</button>
 				<button class = "button" onclick = "Input.clearGrid()">Clear</button>
 			</div>
 			
 			<div class = "sub-menu">
 				<h2 class = "sub-header"> Settings </h2>
-				<button class = "button">Grid-Lines</button>
-				<button class = "button">Stuff2</button>
+				<button class = "button" onclick = "Input.gridLines()">Grid Lines</button>
+				<button id = "speedButton" class = "button" onclick = "Input.speed()">Normal Speed</button>
 			</div>
 			
 			<div class = "sub-menu">
 				<h2 class = "sub-header"> Grid Size </h2>
-				<button class = "button">Small</button>
-				<button class = "button">Normal</button>
-				<button class = "button">Large</button>
-				<button class = "button">Huge</button>
+				<button class = "button" onclick = "Input.tinyGrid()">Tiny</button>
+				<button class = "button" onclick = "Input.smallGrid()">Small</button>
+				<button class = "button" onclick = "Input.normalGrid()">Normal</button>
+				<button class = "button" onclick = "Input.largeGrid()">Large</button>
+				<button class = "button" onclick = "Input.hugeGrid()">Huge</button>
+				<button class = "button" onclick = "Input.whyGrid()">Why?</button>
 			</div>
 		</div>
 		

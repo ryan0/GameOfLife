@@ -38,13 +38,22 @@ Grid.prototype.clear = function()
 	this.draw();
 }
 
+Grid.prototype.step = function()
+{
+
+	for(var i = 0; i < this.cells.length; i++)
+		this.cells[i].update();
+	
+	this.draw();
+}
+
 var prevTime = new Date().getTime();
 Grid.prototype.update = function()
 {
 	if(Input.playing)
 	{
 		var currentTime = new Date().getTime();
-		if(currentTime - prevTime > 100)
+		if(currentTime - prevTime > Input.gameSpeed)
 		{
 			prevTime = currentTime;
 			for(var i = 0; i < this.cells.length; i++)
@@ -57,6 +66,26 @@ Grid.prototype.draw = function()
 {
 	ctx.fillStyle = rgb(0, 0, 0);
 	ctx.fillRect(0,0, Screen.width, Screen.height);
+	
+	if(Input.drawGridLines)
+	{
+		ctx.lineWidth = .5;
+		ctx.strokeStyle = rgb(0, 50, 0);
+		for(var x = 0; x <= this.width; x++)
+		{
+			ctx.beginPath();
+			ctx.moveTo(x * Screen.width / gameGrid.width, 0);
+			ctx.lineTo(x * Screen.width / gameGrid.width, Screen.height);
+			ctx.stroke();
+		}
+		for(var y = 0; y <= this.height; y++)
+		{
+			ctx.beginPath();
+			ctx.moveTo(0, y * Screen.height / gameGrid.height);
+			ctx.lineTo(Screen.width, y * Screen.height / gameGrid.height);
+			ctx.stroke();
+		}
+	}
 	
 	for(var i = 0; i < this.cells.length; i++)
 		this.cells[i].draw();
