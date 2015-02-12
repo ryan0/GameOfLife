@@ -1,60 +1,46 @@
-var mouseIsDown = false;
-var mouse = {x: 0, y: 0};
-function mouseMove(event)
+var Input = 
 {
-	mouse.x = Math.floor(event.clientX * (width / Screen.width));
-	mouse.y = Math.floor(event.clientY * (height / Screen.height));
-}
-
-function mouseDown()
-{
-	mouseIsDown = true;
-}
-
-function mouseUp()
-{
-	mouseIsDown = false;
-}
-
-function handleMouseInput()
-{
-	if(mouseIsDown)
+	playing: false,
+	mouseIsDown: false,
+	mouse: {x: 0, y: 0},
+	
+	mouseMove: function(event)
 	{
-		cells[getCellId(mouse.x, mouse.y)].alive = true;
-		cells[getCellId(mouse.x, mouse.y)].aliveNext = true;
-	}
-}
+		this.mouse.x = Math.floor(event.clientX * (gameGrid.width / Screen.width));
+		this.mouse.y = Math.floor(event.clientY * (gameGrid.height / Screen.height));
+	},
 
-
-var playing = false;
-function play()
-{
-	playing = !playing;
-	var playButton = document.getElementById("thePlayButton");
-	if(playing)
+	mouseDown: function()
 	{
-		playButton.innerHTML = "Stop";
-	}
-	else
-	{
-		playButton.innerHTML = "Play";
-	}
-}
+		this.mouseIsDown = true;
+	},
 
-function clearGrid()
-{
-	for(var x = 0; x < width; x++)
-		for(var y = 0; y < height; y++)
+	mouseUp: function()
+	{
+		this.mouseIsDown = false;
+	},
+
+	update: function()
+	{
+		if(this.mouseIsDown)
 		{
-			cells[getCellId(x, y)].alive = false;
-			cells[getCellId(x, y)].aliveNext = false;
+			gameGrid.getCell(this.mouse.x, this.mouse.y).alive = true;
+			gameGrid.getCell(this.mouse.x, this.mouse.y).aliveNext = true;
 		}
-		
-	ctx.fillStyle = rgb(0, 0, 0);
-	ctx.fillRect(0,0, Screen.width, Screen.height);
-}
+	},
 
-function rgb(r, g, b)
-{
-	return "rgb("+r+","+g+","+b+")";
-}
+	play: function()
+	{
+		this.playing = !this.playing;
+		var playButton = document.getElementById("thePlayButton");
+		if(this.playing)
+			playButton.innerHTML = "Stop";
+		else
+			playButton.innerHTML = "Play";
+	},
+
+	clearGrid: function()
+	{
+		gameGrid.clear();
+	}
+};
