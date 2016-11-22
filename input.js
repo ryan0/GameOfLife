@@ -67,6 +67,7 @@ Screen.mouseup(function() {
 
 
 Screen.on('touchmove', function(event) {
+	event.preventDefault();
 	var offset = Screen.offset();
 	var relX = event.originalEvent.touches[0].pageX - offset.left;
 	var relY = event.originalEvent.touches[0].pageY - offset.top;
