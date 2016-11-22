@@ -115,13 +115,5 @@ $('#gridLinesButton').click(function() {
 	Input.drawGridLines = !Input.drawGridLines;
 });
 
-$('#resizeButton').click(function() {
-
-	var xInput = parseInt($('#xInput').val(), 10);
-	var yInput = parseInt($('#yInput').val(), 10);
-	gameGrid = new Grid(xInput, yInput);
-
-});
-
 
 });
