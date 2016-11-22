@@ -8,8 +8,12 @@ var Input =
 	
 	mouseMove: function(event)
 	{
-		this.mouse.x = Math.floor(event.clientX * (gameGrid.width / Screen.width));
-		this.mouse.y = Math.floor(event.clientY * (gameGrid.height / Screen.height));
+		var parentOffset = Screen.parent().offset();
+		var relX = event.pageX - parentOffset.left;
+		var relY = event.pageY - parentOffset.top;
+
+		this.mouse.x = Math.floor(relX * (gameGrid.width / Screen.width()));
+		this.mouse.y = Math.floor(relY * (gameGrid.height / Screen.height()));
 	},
 
 	mouseDown: function()
@@ -29,31 +33,6 @@ var Input =
 			gameGrid.getCell(this.mouse.x, this.mouse.y).alive = true;
 			gameGrid.getCell(this.mouse.x, this.mouse.y).aliveNext = true;
 		}
-	},
-
-	play: function()
-	{
-		this.playing = !this.playing;
-		var playButton = document.getElementById("playButton");
-		if(this.playing)
-			playButton.innerHTML = "Stop";
-		else
-			playButton.innerHTML = "Play";
-	},
-
-	step: function()
-	{
-		gameGrid.step()
-	},
-	
-	clearGrid: function()
-	{
-		gameGrid.clear();
-	},
-	
-	gridLines: function()
-	{
-		this.drawGridLines = !this.drawGridLines;
 	},
 	
 	speed: function()
@@ -106,3 +85,48 @@ var Input =
 		gameGrid = new Grid(1024, 512);
 	}
 };
+
+
+$(document).ready(function() { 
+
+$( window ).resize(function() {
+	Screen.width($('#screen-container').width());
+	Screen.height($('#screen-container').height());
+	ctx.canvas.width = Screen.width();
+	ctx.canvas.height = Screen.height();
+});
+
+$('#playButton').click(function() {
+	Input.playing = !Input.playing;
+	if(Input.playing)
+		$('#playButton').html('Stop');
+	else
+		$('#playButton').html('Play');
+});
+
+$('#stepButton').click(function() {
+	gameGrid.step();
+});
+
+$('#clearButton').click(function() {
+	gameGrid.clear();
+});
+
+$('#stepButton').click(function() {
+	gameGrid.step();
+});
+
+$('#gridLinesButton').click(function() {
+	Input.drawGridLines = !Input.drawGridLines;
+});
+
+$('#resizeButton').click(function() {
+	var xInput = parseInt($('xInput').val());
+	var yInput = parseInt($('yInput').val());
+
+	gameGrid = new Grid($('xInput').val(), $('yInput').val());
+
+});
+
+
+});

@@ -28,7 +28,7 @@ function Grid(width, height)
 Grid.prototype.getCell = function(x, y)
 {
 	return this.cells[x * this.height + y];
-}
+};
 
 Grid.prototype.clear = function()
 {
@@ -36,7 +36,7 @@ Grid.prototype.clear = function()
 		this.cells[i].aliveNext = false;
 		
 	this.draw();
-}
+};
 
 Grid.prototype.step = function()
 {
@@ -45,7 +45,7 @@ Grid.prototype.step = function()
 		this.cells[i].update();
 	
 	this.draw();
-}
+};
 
 var prevTime = new Date().getTime();
 Grid.prototype.update = function()
@@ -60,33 +60,33 @@ Grid.prototype.update = function()
 				this.cells[i].update();
 		}
 	}
-}
+};
 
 Grid.prototype.draw = function()
 {
-	ctx.fillStyle = rgb(0, 0, 0);
-	ctx.fillRect(0,0, Screen.width, Screen.height);
+	ctx.fillStyle = '#191919';
+	ctx.fillRect(0,0, Screen.width(), Screen.height());
 	
 	if(Input.drawGridLines)
 	{
 		ctx.lineWidth = .5;
-		ctx.strokeStyle = rgb(0, 50, 0);
+		ctx.strokeStyle = rgb(80, 80, 80);
 		for(var x = 0; x <= this.width; x++)
 		{
 			ctx.beginPath();
-			ctx.moveTo(x * Screen.width / gameGrid.width, 0);
-			ctx.lineTo(x * Screen.width / gameGrid.width, Screen.height);
+			ctx.moveTo(x * Screen.width() / gameGrid.width, 0);
+			ctx.lineTo(x * Screen.width() / gameGrid.width, Screen.height());
 			ctx.stroke();
 		}
 		for(var y = 0; y <= this.height; y++)
 		{
 			ctx.beginPath();
-			ctx.moveTo(0, y * Screen.height / gameGrid.height);
-			ctx.lineTo(Screen.width, y * Screen.height / gameGrid.height);
+			ctx.moveTo(0, y * Screen.height() / gameGrid.height);
+			ctx.lineTo(Screen.width(), y * Screen.height() / gameGrid.height);
 			ctx.stroke();
 		}
 	}
 	
 	for(var i = 0; i < this.cells.length; i++)
 		this.cells[i].draw();
-}
+};

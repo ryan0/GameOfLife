@@ -19,8 +19,12 @@ Cell.prototype.draw = function()
 	}
 	if(this.alive)
 	{
-		ctx.fillStyle = rgb(0, 255, 0);
-		ctx.fillRect(this.x * Screen.width / gameGrid.width, this.y * Screen.height / gameGrid.height, Screen.width / gameGrid.width, Screen.height / gameGrid.height);
+		ctx.fillStyle = '#39CCCC';
+		ctx.fillRect(
+			this.x * Screen.width() / gameGrid.width, 
+			this.y * Screen.height() / gameGrid.height, 
+			Screen.width() / gameGrid.width, 
+			Screen.height() / gameGrid.height);
 	}
 };
 

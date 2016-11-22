@@ -1,56 +1,93 @@
-* 
-{
-	cursor: crosshair;
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+* {
+	font-family: 'Orbitron', sans-serif;
+	color: white;
 }
-.wrapper
-{
-	position: fixed; 
-	top: 0; 
-	left: 0; 
+*:focus {
+	outline: none;
+}
+html, body {
 	width: 100%;
 	height: 100%;
-	background-color: black;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #202020;
+}
+body {
+	min-width: 100%;
+	min-height: 100%;
+}
+h1 {
+	color: #39CCCC;
+	text-align: center;
+	font-size: 40px;
+	letter-spacing: 4px;
+}
+h2 {
+	margin-bottom: 10px;
+	color: #39CCCC;
+	font-size: 29px;
+	font-weight: 500;
+	letter-spacing: 2px;
+}
+button {
+    padding: 6px 5px 3px;
+    margin: 5px 4px;
+    border-radius: 4px;
+    border: solid 1px white;
+    background-color: #272727;
+    letter-spacing: 1px;
+    transition: .5s;
+}
+button:hover {
+	border-color: #39CCCC;
+	color: #39CCCC;;
+}
+input {
+	width: 45px;
+	padding: 4px 0px 2px;
+	margin: 5px 4px;
+	border: solid 1px white;
+	border-radius: 1px;
+	text-align: center;
+	background-color: #323232;
+	transition: .5s;
+}
+input:focus {
+	background-color: #202020;
 }
 
-#screen
-{
-	position: fixed; 
-	top: 0; 
-	left: 0; 
+#left {
+	float: left;
+	width: calc(100% - 200px);
+	height: 100%;
+}
+#right {
+	float: right;
+	width: 200px;
+	height: 100%;
+}
+#screen {
+	border-radius: 3px;
+}
+#screen-container {
+	margin: 25px 45px;
+    height: calc(100% - 120px);
+	border-radius: 3px;
+	border: solid 1px white;
+	background-color: #191919;
+	box-shadow: 0px 2px 15px #101010;
+	cursor: crosshair;
 }	
-
-#menu
-{
-	display: table;
-	border-spacing: 10px;
-	position: fixed; 
-	top: 80%; 
-	left: 0%; 
-	width: 100%;
-	height: 20%;
-	background-color: rgb(35, 60, 35);
+#menu {
+	float: right;
+	height: 100%;
+    background-color: #272727;
+    border-left: solid 1px white;
+    box-shadow: 2px 0px 10px #101010;
 }
-
-.sub-menu
-{
-	display: table-cell;
-	text-align:center;
-	background-color: rgb(45, 140, 45);
-}
-
-.sub-header
-{
-	color: rgb(15, 40, 15);
-	text-decoration: underline;
-}
-
-.button
-{ 
-	position:relative;
-	top:50%;
-	transform: translateY(-50%);
-	
-	background-color: rgb(35, 205, 35);
-	border: 1px solid rgb(5, 250, 5);
-	padding: 4px;
+.sub-menu {
+    text-align: center;
 }
