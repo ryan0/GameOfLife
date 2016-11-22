@@ -5,26 +5,6 @@ var Input =
 	gameSpeed: 100,
 	mouseIsDown: false,
 	mouse: {x: 0, y: 0},
-	
-	mouseMove: function(event)
-	{
-		var parentOffset = Screen.parent().offset();
-		var relX = event.pageX - parentOffset.left;
-		var relY = event.pageY - parentOffset.top;
-
-		this.mouse.x = Math.floor(relX * (gameGrid.width / Screen.width()));
-		this.mouse.y = Math.floor(relY * (gameGrid.height / Screen.height()));
-	},
-
-	mouseDown: function()
-	{
-		this.mouseIsDown = true;
-	},
-
-	mouseUp: function()
-	{
-		this.mouseIsDown = false;
-	},
 
 	update: function()
 	{
@@ -57,13 +37,57 @@ var Input =
 };
 
 
-$(document).ready(function() { 
+$(document).ready(function() {
 
 $( window ).resize(function() {
 	Screen.width($('#screen-container').width());
 	Screen.height($('#screen-container').height());
 	ctx.canvas.width = Screen.width();
 	ctx.canvas.height = Screen.height();
+});
+
+
+
+Screen.mousemove(function(event) {
+	var parentOffset = Screen.parent().offset();
+	var relX = event.pageX - parentOffset.left;
+	var relY = event.pageY - parentOffset.top;
+
+	Input.mouse.x = Math.floor(relX * (gameGrid.width / Screen.width()));
+	Input.mouse.y = Math.floor(relY * (gameGrid.height / Screen.height()));
+});
+
+Screen.mousedown(function() {
+	Input.mouseIsDown = true;
+});
+
+Screen.mouseup(function() {
+	Input.mouseIsDown = false;
+});
+
+
+Screen.on('touchmove', function(event) {
+	var offset = Screen.offset();
+	var relX = event.originalEvent.touches[0].pageX - offset.left;
+	var relY = event.originalEvent.touches[0].pageY - offset.top;
+
+	Input.mouse.x = Math.floor(relX * (gameGrid.width / Screen.width()));
+	Input.mouse.y = Math.floor(relY * (gameGrid.height / Screen.height()));
+});
+
+Screen.on('touchstart', function(event) {
+	var offset = Screen.offset();
+	var relX = event.originalEvent.touches[0].pageX - offset.left;
+	var relY = event.originalEvent.touches[0].pageY - offset.top;
+
+	Input.mouse.x = Math.floor(relX * (gameGrid.width / Screen.width()));
+	Input.mouse.y = Math.floor(relY * (gameGrid.height / Screen.height()));
+
+	Input.mouseIsDown = true;
+});
+
+Screen.on('touchend', function() {
+	Input.mouseIsDown = false;
 });
 
 $('#playButton').click(function() {
