@@ -1,3 +1,3 @@
 # GameOfLife
-Conway's Game of Life
-Check it out [here](https://ryan0.github.io/GameOfLife/)
+Conway's Game of Life in js
+Check it out [here](https://ryan0.github.io/conways-game-of-life/)
