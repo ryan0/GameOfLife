@@ -54,36 +54,6 @@ var Input =
 			speedButton.innerHTML = "Slow Speed";
 		}
 	},
-	
-	tinyGrid: function()
-	{
-		gameGrid = new Grid(32, 16);
-	},
-	
-	smallGrid: function()
-	{
-		gameGrid = new Grid(64, 32);
-	},
-	
-	normalGrid: function()
-	{
-		gameGrid = new Grid(128, 64);
-	},
-	
-	largeGrid: function()
-	{
-		gameGrid = new Grid(256, 128);
-	},
-	
-	hugeGrid: function()
-	{
-		gameGrid = new Grid(512, 256);
-	},
-	
-	whyGrid: function()
-	{
-		gameGrid = new Grid(1024, 512);
-	}
 };
 
 
@@ -121,10 +91,10 @@ $('#gridLinesButton').click(function() {
 });
 
 $('#resizeButton').click(function() {
-	var xInput = parseInt($('xInput').val());
-	var yInput = parseInt($('yInput').val());
 
-	gameGrid = new Grid($('xInput').val(), $('yInput').val());
+	var xInput = parseInt($('#xInput').val(), 10);
+	var yInput = parseInt($('#yInput').val(), 10);
+	gameGrid = new Grid(xInput, yInput);
 
 });
 

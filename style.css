@@ -91,3 +91,48 @@ input:focus {
 .sub-menu {
     text-align: center;
 }
+
+
+@media screen and (max-width: 860px) {
+
+
+h1 {
+	font-size: 30px;
+	letter-spacing: 2px;
+}
+h2 {
+    margin: 10px 0px 5px;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+#left {
+	float: left;
+	width: calc(100% - 160px);
+	height: 100%;
+}
+#right {
+	float: right;
+	width: 160px;
+	height: 100%;
+}
+#screen-container {
+    height: calc(100% - 100px);
+}	
+
+
+}
+
+@media screen and (max-width: 600px) {
+
+
+h1 {
+	font-size: 25px;
+	letter-spacing: 0px;
+}
+h2 {
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
+
+}
